@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Мастермайнд для маркетологов · MarkHUB × IRKM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --black: #0a0a0a;
+      --gray: #6b7280;
+      --gray-light: #f4f4f5;
+      --blue: #1a4fc4;
+      --blue-dark: #1340a0;
+      --orange: #f97316;
+      --orange-dark: #ea6700;
+      --border: #e4e4e7;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Onest', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: var(--white);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-logos {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .logo-badge {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+    .logo-badge span {
+      color: var(--blue);
+    }
+    .logo-sep {
+      width: 1px;
+      height: 20px;
+      background: var(--border);
+    }
+    .header-cta {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--orange);
+      border: none;
+      cursor: pointer;
+      padding: 9px 22px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .header-cta:hover { background: var(--orange-dark); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 48px 80px;
+      position: relative;
+      overflow: hidden;
+      background: var(--white);
+    }
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, #e4e4e7 1px, transparent 1px),
+        linear-gradient(to bottom, #e4e4e7 1px, transparent 1px);
+      background-size: 64px 64px;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .hero-accent-bar {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 4px;
+      background: linear-gradient(90deg, var(--blue) 0%, var(--orange) 100%);
+    }
+    .hero-accent-circle {
+      position: absolute;
+      right: -120px; bottom: -120px;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,79,196,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      border: 1.5px solid var(--blue);
+      padding: 6px 14px;
+      border-radius: 2px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 5vw, 62px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--blue);
+    }
+    .hero-title .orange { color: var(--orange); }
+
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--gray);
+      max-width: 560px;
+      margin-bottom: 44px;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.25s ease both;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--black);
+    }
+    .meta-item svg { color: var(--blue); flex-shrink: 0; }
+    .meta-item.free { color: var(--orange); }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--orange);
+      border: none;
+      cursor: pointer;
+      padding: 18px 40px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(249,115,22,0.28);
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .hero-cta:hover {
+      background: var(--orange-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(249,115,22,0.36);
+    }
+    .hero-cta svg { transition: transform 0.2s; }
+    .hero-cta:hover svg { transform: translateX(4px); }
+
+    /* Hero right card */
+    .hero-card {
+      background: var(--black);
+      border-radius: 8px;
+      padding: 40px 36px;
+      color: var(--white);
+      animation: fadeUp 0.6s 0.2s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--orange));
+    }
+    .hero-card-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 20px;
+    }
+    .hero-card-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    .hero-card-row:last-child { margin-bottom: 0; }
+    .check-icon {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: rgba(26,79,196,0.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .check-icon svg { color: #60a5fa; }
+    .hero-card-text {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* ─── ORGANIZERS ─── */
+    .section {
+      padding: 96px 48px;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+    .section-full {
+      padding: 96px 48px;
+      background: var(--gray-light);
+    }
+    .section-full-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 120px;
+    }
+
+    .org-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .org-card {
+      background: var(--white);
+      padding: 48px 44px;
+    }
+    .org-card:first-child { border-right: 1px solid var(--border); }
+
+    .org-name {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+    .org-name span { color: var(--blue); }
+    .org-tag-line {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 20px;
+    }
+    .org-desc {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--gray);
+    }
+
+    /* ─── SPEAKERS ─── */
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .speaker-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .speaker-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      transform: translateY(-4px);
+    }
+    .speaker-photo {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      background: #e4e4e7;
+      position: relative;
+      overflow: hidden;
+    }
+    .speaker-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #1a4fc4 0%, #0a0a0a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .speaker-photo-placeholder svg {
+      opacity: 0.2;
+      color: white;
+    }
+    .speaker-photo-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .speaker-info { padding: 32px 32px 36px; }
+    .speaker-name {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+    .speaker-role {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+    .speaker-bio {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--gray);
+    }
+
+    /* ─── PROGRAM ─── */
+    .program-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .program-item {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding: 28px 36px;
+      border-bottom: 1px solid var(--border);
+      background: var(--white);
+      transition: background 0.2s;
+    }
+    .program-item:last-child { border-bottom: none; }
+    .program-item:hover { background: #fafafa; }
+    .program-num {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--orange);
+      min-width: 28px;
+    }
+    .program-text {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.5;
+    }
+    .program-icon {
+      margin-left: auto;
+      color: var(--blue);
+      opacity: 0.4;
+      flex-shrink: 0;
+    }
+
+    /* ─── CTA SECTION ─── */
+    .cta-section {
+      background: var(--black);
+      padding: 96px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--orange));
+    }
+    .cta-bg-text {
+      position: absolute;
+      font-size: clamp(80px, 15vw, 200px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.03);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .cta-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 24px;
+    }
+    .cta-title {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+    .cta-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .cta-meta-item {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cta-meta-item svg { color: var(--blue); }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--orange);
+      border: none;
+      cursor: pointer;
+      padding: 20px 52px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 32px rgba(249,115,22,0.36);
+    }
+    .cta-btn:hover {
+      background: var(--orange-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 48px rgba(249,115,22,0.48);
+    }
+    .cta-btn svg { transition: transform 0.2s; }
+    .cta-btn:hover svg { transform: translateX(4px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logos {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-logo {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-logo span { color: var(--blue); }
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      header { padding: 0 24px; }
+      .hero { padding: 90px 24px 64px; }
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .hero-card { display: none; }
+      .section { padding: 64px 24px; }
+      .section-full { padding: 64px 24px; }
+      .org-grid { grid-template-columns: 1fr; }
+      .org-card:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+      .speakers-grid { grid-template-columns: 1fr; }
+      .program-item { padding: 22px 24px; gap: 18px; }
+      .program-text { font-size: 15px; }
+      .cta-section { padding: 72px 24px; }
+      footer { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-logos">
+      <span class="logo-badge">Mark<span>HUB</span></span>
+      <div class="logo-sep"></div>
+      <span class="logo-badge" style="color:var(--gray)">IRKM</span>
+    </div>
+    <a href="https://taplink.cc" target="_blank" class="header-cta">Зарегистрироваться</a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-accent-bar"></div>
+    <div class="hero-accent-circle"></div>
+
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag">Бесплатный мастермайнд</div>
+
+        <h1 class="hero-title">
+          Маркетологам,<br>
+          которые хотят работать<br>
+          с <em>европейским</em><br>
+          <span class="orange">рынком.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Если нет опыта, нет кейсов, нет наставника — как выйти
+          из этого замкнутого круга и найти первых клиентов.
+        </p>
+
+        <div class="hero-meta">
+          <div class="meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            16 апреля
+          </div>
+          <div class="meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            17:00 по Берлину
+          </div>
+          <div class="meta-item free">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+            Бесплатно
+          </div>
+        </div>
+
+        <a href="https://taplink.cc" target="_blank" class="hero-cta">
+          Зарегистрироваться
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <!-- Card -->
+      <div class="hero-card">
+        <div class="hero-card-label">На мастермайнде вы узнаете</div>
+        <div class="hero-card-row">
+          <div class="check-icon">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="hero-card-text">Как войти на европейский рынок без кейсов и опыта</div>
+        </div>
+        <div class="hero-card-row">
+          <div class="check-icon">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="hero-card-text">Где и как искать первых клиентов</div>
+        </div>
+        <div class="hero-card-row">
+          <div class="check-icon">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="hero-card-text">Как продать себя без громкого портфолио</div>
+        </div>
+        <div class="hero-card-row">
+          <div class="check-icon">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="hero-card-text">Как разорвать круг «нет опыта → нет клиентов»</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORGANIZERS -->
+  <div class="section-full">
+    <div class="section-full-inner">
+      <div class="section-label reveal">Организаторы</div>
+      <div class="org-grid reveal">
+        <div class="org-card">
+          <div class="org-name">Mark<span>HUB</span></div>
+          <div class="org-tag-line">Профессиональное сообщество</div>
+          <p class="org-desc">
+            Платформа развития профессионалов в сфере маркетинга и бизнеса. Закрытое сообщество, где практикующие маркетологи и предприниматели развиваются, находят клиентов и работают с европейским рынком.
+          </p>
+        </div>
+        <div class="org-card">
+          <div class="org-name">IRKM</div>
+          <div class="org-tag-line">Прага · Аккредитовано МО Чехии</div>
+          <p class="org-desc">
+            Институт реквалификационных курсов маркетинга — знак качества в европейском маркетинговом образовании. Официальная аккредитация Министерства образования Чехии. Наши выпускники работают по всей Европе.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPEAKERS -->
+  <div class="section">
+    <div class="section-label reveal">Спикеры</div>
+    <div class="speakers-grid">
+
+      <div class="speaker-card reveal">
+        <div class="speaker-photo-placeholder">
+          <img src="sp.jpg" alt="Анна Кононова">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="speaker-info">
+          <div class="speaker-name">Анна Кононова</div>
+          <div class="speaker-role">Основатель IRKM · Директор агентства</div>
+          <p class="speaker-bio">
+            Работала с 30+ успешными нишами на европейском рынке. Знает изнутри, как строится маркетинг в Европе и как в него войти без опыта.
+          </p>
+        </div>
+      </div>
+
+      <div class="speaker-card reveal">
+        <img src="sp1.jpg" alt="Анна Кононова">
+        </div>
+        <div class="speaker-info">
+          <div class="speaker-name">Полина Шкаленкова</div>
+          <div class="speaker-role">Head of Marketing · 3 европейских проекта</div>
+          <p class="speaker-bio">
+            20+ лет в маркетинге. Автор трёх книг и YouTube-проектов. Четыре года назад сама перестроилась с рынка СНГ на европейский — после переезда, с нуля. Сейчас руководит маркетингом в трёх европейских компаниях.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROGRAM -->
+  <div class="section-full">
+    <div class="section-full-inner">
+      <div class="section-label reveal">Что будет на мастермайнде</div>
+      <div class="program-list reveal">
+        <div class="program-item">
+          <span class="program-num">01</span>
+          <span class="program-text">Как войти на европейский рынок, если пока нет кейсов и опыта работы здесь</span>
+          <span class="program-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+        <div class="program-item">
+          <span class="program-num">02</span>
+          <span class="program-text">Где и как искать первых клиентов</span>
+          <span class="program-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+        <div class="program-item">
+          <span class="program-num">03</span>
+          <span class="program-text">Как выстроить доверие и продать себя без громкого портфолио</span>
+          <span class="program-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+        <div class="program-item">
+          <span class="program-num">04</span>
+          <span class="program-text">Как не застрять в замкнутом круге «нет опыта — нет клиентов — нет опыта»</span>
+          <span class="program-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section">
+    <div class="cta-bg-text">FREE</div>
+    <div class="cta-inner">
+      <div class="cta-label">Регистрация открыта</div>
+      <h2 class="cta-title">Начни с европейского рынка уже 16 апреля</h2>
+      <div class="cta-meta">
+        <div class="cta-meta-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          16 апреля
+        </div>
+        <div class="cta-meta-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          17:00 по Берлину
+        </div>
+        <div class="cta-meta-item" style="color:var(--orange)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+          Бесплатно
+        </div>
+      </div>
+      <a href="https://taplink.cc" target="_blank" class="cta-btn">
+        Зарегистрироваться
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logos">
+      <span class="footer-logo">Mark<span>HUB</span></span>
+      <div class="logo-sep" style="background:rgba(255,255,255,0.1)"></div>
+      <span class="footer-logo">IRKM · Прага</span>
+    </div>
+    <span class="footer-copy">© 2025 MarkHUB × IRKM · Все права защищены</span>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
